@@ -1,0 +1,25 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 配置虚拟机
+    virtual-host: /
+    # 开启消息确认机制 confirm 异步
+    publisher-confirm-type: correlated
+    #回调
+    publisher-returns: true
+    # 之前的旧版本 开启消息确认机制的方式
+#    publisher-confirms: true
+    
+    listener:
+      direct:
+      # 消息开启手动确认
+        acknowledge-mode: manual
+      simple:
+        retry:
+        # 开启重试
+          enabled: true
+          # 重试次数,默认为3次
+          max-attempts: 5
